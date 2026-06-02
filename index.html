@@ -1,0 +1,1331 @@
+<!doctype html>
+
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>João Marcos Cabral | Full Stack Developer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&amp;family=Fira+Code:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      /* Base Overrides for specific fonts requested */
+      :root {
+        --font-main: 'Almarai', sans-serif;
+        --font-mono: 'Fira Code', monospace;
+      }
+      body {
+        font-family: var(--font-main);
+        background-color: #050505;
+        color: #e5e2e1;
+      }
+      .font-mono {
+        font-family: var(--font-mono);
+      }
+
+      /* Grid Background Pattern */
+      .grid-bg {
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(222, 219, 200, 0.05) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(222, 219, 200, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 40px 40px;
+      }
+
+      .dot-bg {
+        background-image: radial-gradient(
+          rgba(222, 219, 200, 0.15) 1px,
+          transparent 1px
+        );
+        background-size: 20px 20px;
+      }
+
+      /* Custom Utilities */
+      .tech-panel {
+        background: rgba(10, 10, 10, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(222, 219, 200, 0.15);
+        position: relative;
+      }
+      .tech-panel::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        border-top: 2px solid rgba(222, 219, 200, 0.5);
+        border-left: 2px solid rgba(222, 219, 200, 0.5);
+      }
+      .tech-panel::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 8px;
+        height: 8px;
+        border-bottom: 2px solid rgba(222, 219, 200, 0.5);
+        border-right: 2px solid rgba(222, 219, 200, 0.5);
+      }
+
+      /* Animations */
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+      .marquee-content {
+        display: flex;
+        width: fit-content;
+        animation: marquee 20s linear infinite;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+      .cursor-blink {
+        animation: blink 1s step-end infinite;
+        display: inline-block;
+        width: 10px;
+        height: 1.2em;
+        background-color: #dedbc8;
+        vertical-align: middle;
+        margin-left: 4px;
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Timeline specific */
+      .timeline-line::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(222, 219, 200, 0.3) 0,
+          rgba(222, 219, 200, 0.3) 4px,
+          transparent 4px,
+          transparent 8px
+        );
+        transform: translateX(-50%);
+      }
+      @media (max-width: 768px) {
+        .timeline-line::before {
+          left: 20px;
+        }
+      }
+
+      /* Terminal text effect */
+      .typewriter p {
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        border-right: 0.15em solid orange; /* The typwriter cursor */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: 0.15em; /* Adjust as needed */
+        animation:
+          typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'on-tertiary': '#2a313d',
+              'on-tertiary-fixed-variant': '#404754',
+              'error-container': '#93000a',
+              'surface-container-high': '#2a2a2a',
+              'primary-container': '#dedbc8',
+              'on-tertiary-fixed': '#151c27',
+              error: '#ffb4ab',
+              'on-background': '#e5e2e1',
+              'surface-bright': '#3a3939',
+              'on-tertiary-container': '#59606d',
+              'on-error': '#690005',
+              tertiary: '#f6f7ff',
+              'surface-container-low': '#1c1b1b',
+              'on-secondary-fixed': '#1b1c10',
+              'on-surface': '#e5e2e1',
+              'tertiary-fixed': '#dce2f3',
+              outline: '#939187',
+              'tertiary-fixed-dim': '#c0c7d6',
+              'surface-container-lowest': '#0e0e0e',
+              'surface-tint': '#cac7b5',
+              'on-primary-container': '#616051',
+              'primary-fixed': '#e6e3d0',
+              'on-secondary-container': '#b7b6a3',
+              'secondary-container': '#474839',
+              secondary: '#c8c7b4',
+              'surface-dim': '#131313',
+              'inverse-on-surface': '#313030',
+              background: '#131313',
+              'primary-fixed-dim': '#cac7b5',
+              'surface-container': '#201f1f',
+              'on-primary-fixed': '#1c1c10',
+              'surface-variant': '#353534',
+              'secondary-fixed-dim': '#c8c7b4',
+              'on-secondary-fixed-variant': '#474839',
+              'inverse-primary': '#605f50',
+              primary: '#fbf7e4',
+              'outline-variant': '#48473f',
+              'inverse-surface': '#e5e2e1',
+              'on-primary': '#323124',
+              'on-surface-variant': '#c9c6bc',
+              surface: '#131313',
+              'on-error-container': '#ffdad6',
+              'secondary-fixed': '#e5e3cf',
+              'tertiary-container': '#d4dbeb',
+              'on-secondary': '#303124',
+              'surface-container-highest': '#353534',
+              'on-primary-fixed-variant': '#484739',
+              accent: '#DEDBC8',
+            },
+            borderRadius: {
+              DEFAULT: '0.125rem',
+              lg: '0.25rem',
+              xl: '0.5rem',
+              full: '0.75rem',
+            },
+            spacing: {
+              'margin-desktop': '80px',
+              unit: '4px',
+              gutter: '24px',
+              'container-max': '1200px',
+              'margin-tablet': '40px',
+              'margin-mobile': '20px',
+            },
+            fontFamily: {
+              'body-lg': ['Almarai', 'sans-serif'],
+              'body-md': ['Almarai', 'sans-serif'],
+              'display-lg': ['Almarai', 'sans-serif'],
+              'label-caps': ['Fira Code', 'monospace'],
+              'headline-md': ['Almarai', 'sans-serif'],
+              'headline-accent': ['Fira Code', 'monospace'],
+              'display-lg-mobile': ['Almarai', 'sans-serif'],
+              'code-sm': ['Fira Code', 'monospace'],
+            },
+            fontSize: {
+              'body-lg': ['18px', { lineHeight: '1.6', fontWeight: '400' }],
+              'body-md': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
+              'display-lg': [
+                '64px',
+                {
+                  lineHeight: '1.1',
+                  letterSpacing: '-0.04em',
+                  fontWeight: '800',
+                },
+              ],
+              'label-caps': [
+                '12px',
+                {
+                  lineHeight: '1.2',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '1.4',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-accent': [
+                '36px',
+                { lineHeight: '1.2', fontWeight: '700' },
+              ],
+              'display-lg-mobile': [
+                '40px',
+                {
+                  lineHeight: '1.1',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '800',
+                },
+              ],
+              'code-sm': [
+                '14px',
+                {
+                  lineHeight: '1.5',
+                  letterSpacing: '0.02em',
+                  fontWeight: '400',
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-[#050505] text-[#e5e2e1] selection:bg-[#DEDBC8] selection:text-black overflow-x-hidden antialiased grid-bg"
+  >
+    <!-- JSON Component: TopNavBar -->
+    <nav
+      class="fixed top-0 left-0 w-full bg-[#050505]/90 backdrop-blur-md border-b border-[#DEDBC8]/20 flex justify-between items-center px-6 py-4 z-50"
+    >
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[#DEDBC8]">terminal</span>
+        <a
+          class="font-label-caps text-label-caps font-bold text-primary tracking-widest"
+          href="#"
+          >JMC_SYS</a
+        >
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          class="font-label-caps text-label-caps tracking-wider text-primary font-bold border-b border-primary pb-1 hover:text-primary transition-colors duration-300"
+          href="#hero"
+          >/INIT</a
+        >
+        <a
+          class="font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300"
+          href="#experience"
+          >/EXP</a
+        >
+        <a
+          class="font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300"
+          href="#products"
+          >/SAAS</a
+        >
+        <a
+          class="font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300"
+          href="#stack"
+          >/ARCH</a
+        >
+        <a
+          class="font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-colors duration-300"
+          href="#contact"
+          >/PING</a
+        >
+      </div>
+      <a href="#contact">
+        <button
+          class="hidden md:inline-flex items-center justify-center bg-transparent border border-[#DEDBC8]/50 text-[#DEDBC8] px-4 py-1.5 rounded-sm font-label-caps text-label-caps hover:bg-[#DEDBC8]/10 transition-colors"
+        >
+          &gt; CONNECT
+        </button>
+
+        <button class="md:hidden text-primary">
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: 'FILL' 0"
+            >menu</span
+          >
+        </button>
+      </a>
+    </nav>
+    <!-- 1. HERO -->
+    <section
+      class="relative min-h-screen flex flex-col justify-center items-start px-margin-mobile md:px-margin-desktop pt-24 overflow-hidden"
+      id="hero"
+    >
+      <div class="max-w-container-max w-full mx-auto z-10 fade-up">
+        <div class="font-code-sm text-code-sm text-on-surface-variant mb-4">
+          <span class="text-[#DEDBC8]">sys@jmc</span>:<span
+            class="text-blue-400"
+            >~</span
+          >$ ./init_profile.sh
+        </div>
+        <div
+          class="inline-flex items-center gap-2 bg-[#111] border border-[#DEDBC8]/30 rounded-sm px-3 py-1 mb-8"
+        >
+          <div class="w-2 h-2 bg-green-500 rounded-sm animate-pulse"></div>
+          <span class="font-label-caps text-label-caps text-on-surface-variant"
+            >STATUS: ONLINE_READY</span
+          >
+        </div>
+        <h1
+          class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-2 tracking-tight"
+        >
+          JOÃO MARCOS<span class="cursor-blink"></span>
+        </h1>
+        <div class="h-10 overflow-hidden mb-8">
+          <div
+            class="font-code-sm text-lg text-[#DEDBC8] font-bold transition-transform duration-500 flex flex-col"
+            id="rotating-roles"
+          >
+            <span class="h-10 flex items-center"
+              >&gt; Desenvolvedor Full Stack
+            </span>
+            <span class="h-10 flex items-center">&gt; Construtor de SaaS</span>
+          </div>
+        </div>
+        <p
+          class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 border-l-2 border-[#DEDBC8]/50 pl-4"
+        >
+          Desenvolvedor Full Stack com mais de 5 anos de experiência construindo
+          software corporativo, plataformas SaaS, sistemas de chatbot e
+          arquiteturas escaláveis. Focado em desenvolvimento e performance.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-16">
+          <a
+            class="bg-[#DEDBC8] text-[#050505] px-6 py-3 rounded-sm font-label-caps text-label-caps font-bold hover:bg-white transition-colors duration-300 flex items-center gap-2"
+            href="#products"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >account_tree</span
+            >
+            EXPLORAR_PROJETOS
+          </a>
+          <a
+            class="bg-transparent border border-[#DEDBC8]/40 text-[#DEDBC8] px-6 py-3 rounded-sm font-label-caps text-label-caps hover:bg-[#DEDBC8]/10 transition-colors duration-300 flex items-center gap-2"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[18px]">download</span>
+            DOWN_CURRICULO.PDF
+          </a>
+        </div>
+        <div
+          class="grid grid-cols-3 gap-8 md:gap-16 border-t border-dashed border-[#DEDBC8]/30 pt-8 w-full max-w-3xl"
+        >
+          <div class="flex flex-col">
+            <span class="font-code-sm text-2xl text-primary mb-1">05+</span>
+            <span
+              class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+              >YRS_EXP</span
+            >
+          </div>
+          <div class="flex flex-col">
+            <span class="font-code-sm text-2xl text-primary mb-1">03</span>
+            <span
+              class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+              >ORGS</span
+            >
+          </div>
+          <div class="flex flex-col">
+            <span class="font-code-sm text-2xl text-primary mb-1">04</span>
+            <span
+              class="font-label-caps text-[10px] text-on-surface-variant uppercase"
+              >SAAS_DEPLOYS</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 2. SOBRE -->
+    <section
+      class="py-24 px-margin-mobile md:px-margin-desktop bg-[#0a0a0a] relative border-y border-[#DEDBC8]/20 dot-bg"
+    >
+      <div class="max-w-container-max mx-auto fade-up">
+        <div class="tech-panel p-8 md:p-12">
+          <div
+            class="font-label-caps text-label-caps text-[#DEDBC8] mb-6 flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-sm">info</span>
+            // CORE_PHILOSOPHY
+          </div>
+          <h2
+            class="text-2xl md:text-4xl leading-tight mb-8 max-w-4xl font-headline-md"
+          >
+            <span class="text-primary"
+              >Eu construo produtos que resolvem problemas reais,</span
+            ><br />
+            <span
+              class="text-[#DEDBC8] font-mono font-bold tracking-tight bg-[#DEDBC8]/10 px-2"
+              >com Arquitetura de Software Escalável.</span
+            >
+          </h2>
+          <div class="bg-black/50 p-6 border border-[#DEDBC8]/10 rounded-sm">
+            <pre
+              class="font-code-sm text-sm text-on-surface-variant whitespace-pre-wrap overflow-x-auto"
+            ><code class="language-typescript"><span class="text-blue-400">const</span> developerProfile = {
+  <span class="text-green-300">journey</span>: <span class="text-yellow-300">"Iniciada em startups ágeis e maturada em ambientes corporativos de alta demanda."</span>,
+  <span class="text-green-300">primaryFocus</span>: [
+    <span class="text-yellow-300">"Criação de soluções completas"</span>,
+    <span class="text-yellow-300">"Design de arquitetura de banco de dados"</span>,
+    <span class="text-yellow-300">"Sistemas distribuídos e escaláveis"</span>
+  ],
+  <span class="text-green-300">priorities</span>: [<span class="text-yellow-300">"Performance"</span>, <span class="text-yellow-300">"Clean Code"</span>, <span class="text-yellow-300">"SOLID Principles"</span>]
+};</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- MARQUEE DIVIDER -->
+    <div
+      class="w-full bg-[#111] text-[#DEDBC8] py-3 overflow-hidden border-b border-[#DEDBC8]/20"
+    >
+      <div
+        class="marquee-content font-code-sm text-xs tracking-widest uppercase"
+      >
+        &gt; DESELVOLVEDOR FULL STACK &lt; // &gt; CONSTRUTOR DE SAAS &lt; //
+        &gt; DESELVOLVEDOR FULL STACK &lt; // &gt; CONSTRUTOR DE SAAS &lt; //
+        &gt; DESELVOLVEDOR FULL STACK &lt; // &gt; CONSTRUTOR DE SAAS &lt; //
+      </div>
+    </div>
+    <!-- 3. EXPERIÊNCIA PROFISSIONAL -->
+    <section
+      class="py-24 px-margin-mobile md:px-margin-desktop bg-[#050505] relative"
+      id="experience"
+    >
+      <div class="max-w-container-max mx-auto fade-up">
+        <div
+          class="mb-12 flex items-end justify-between border-b border-[#DEDBC8]/20 pb-4"
+        >
+          <div>
+            <h2
+              class="font-headline-accent text-headline-accent text-[#DEDBC8]"
+            >
+              /EXP_LOG
+            </h2>
+            <p class="font-code-sm text-xs text-on-surface-variant mt-2">
+              Professional software development since 2020.
+            </p>
+          </div>
+          <span class="font-code-sm text-[#DEDBC8] hidden md:block"
+            >SELECT * FROM experience ORDER BY start_date DESC;</span
+          >
+        </div>
+        <div class="flex flex-col gap-8">
+          <div class="tech-panel p-6 border-l-4 border-l-[#DEDBC8]">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4"
+            >
+              <div>
+                <h3 class="font-code-sm text-lg text-primary font-bold">
+                  Central IT
+                </h3>
+                <p class="font-label-caps text-xs text-on-surface-variant mt-1">
+                  Full Stack Developer | Chatbots
+                </p>
+              </div>
+              <span
+                class="font-label-caps text-[10px] text-[#050505] bg-[#DEDBC8] px-3 py-1 mt-4 md:mt-0 font-bold"
+                >2022 — 2026</span
+              >
+            </div>
+            <p class="font-body-md text-sm text-on-surface-variant mb-6">
+              Atuando nas equipes de Chatbots, CitBot/Aura, Mailer e CitSmart
+              ITSM. Foco em arquitetura escalável e integrações complexas.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >NestJS</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >React</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Next.js</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Redis</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Docker</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Kubernetes</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >IBM Watson</span
+              >
+            </div>
+          </div>
+          <div class="tech-panel p-6 border-l-4 border-l-[#DEDBC8]/30">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4"
+            >
+              <div>
+                <h3 class="font-code-sm text-lg text-primary font-bold">
+                  Ragnasoft
+                </h3>
+                <p class="font-label-caps text-xs text-on-surface-variant mt-1">
+                  Full Stack Developer
+                </p>
+              </div>
+              <span
+                class="font-label-caps text-[10px] text-on-surface-variant border border-on-surface-variant px-3 py-1 mt-4 md:mt-0"
+                >2021 — 2022</span
+              >
+            </div>
+            <p class="font-body-md text-sm text-on-surface-variant mb-6">
+              Foco em Arquitetura Hexagonal, SOLID, TDD e design de sistemas
+              robustos.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Angular</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Node.js</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >NestJS</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >AWS</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Docker</span
+              >
+            </div>
+          </div>
+          <div class="tech-panel p-6 border-l-4 border-l-[#DEDBC8]/10">
+            <div
+              class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4"
+            >
+              <div>
+                <h3 class="font-code-sm text-lg text-primary font-bold">
+                  RMITech
+                </h3>
+                <p class="font-label-caps text-xs text-on-surface-variant mt-1">
+                  Full Stack Developer
+                </p>
+              </div>
+              <span
+                class="font-label-caps text-[10px] text-on-surface-variant border border-on-surface-variant px-3 py-1 mt-4 md:mt-0"
+                >2020 — 2021</span
+              >
+            </div>
+            <p class="font-body-md text-sm text-on-surface-variant mb-6">
+              Trabalhando no desenvolvimento core de sistemas de RH
+              corporativos.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Angular 9</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >TypeScript</span
+              >
+              <span
+                class="text-[10px] font-code-sm px-2 py-1 bg-[#111] border border-[#DEDBC8]/20 text-[#DEDBC8]"
+                >Jest</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 4. PRODUTOS E SAAS -->
+    <section
+      class="py-24 px-margin-mobile md:px-margin-desktop bg-[#0a0a0a] relative border-t border-[#DEDBC8]/20 dot-bg"
+      id="products"
+    >
+      <div class="max-w-container-max mx-auto fade-up">
+        <div
+          class="mb-12 flex items-end justify-between border-b border-[#DEDBC8]/20 pb-4"
+        >
+          <div>
+            <h2
+              class="font-headline-accent text-headline-accent text-[#DEDBC8]"
+            >
+              /DEPLOYMENTS
+            </h2>
+            <p class="font-code-sm text-xs text-on-surface-variant mt-2">
+              SaaS Platforms &amp; Products
+            </p>
+          </div>
+          <span class="material-symbols-outlined text-[#DEDBC8]">dns</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="tech-panel p-6 flex flex-col justify-between h-full group hover:border-[#DEDBC8]/50 transition-colors duration-300"
+          >
+            <div class="mb-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3
+                  class="font-code-sm text-xl text-primary font-bold flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-sm text-[#DEDBC8]"
+                    >folder_open</span
+                  >
+                  Agilis
+                </h3>
+                <span
+                  class="font-label-caps text-[9px] border border-[#DEDBC8]/30 px-2 py-0.5 text-[#DEDBC8]"
+                  >V 1.0.0</span
+                >
+              </div>
+              <p
+                class="font-label-caps text-[10px] text-[#DEDBC8]/70 mb-4 uppercase"
+              >
+                Produtividade Empresarial &amp; Workflow Automation
+              </p>
+              <p class="font-body-md text-sm text-on-surface-variant">
+                Uma plataforma completa de gestão de projetos projetada para
+                escalar a produtividade de equipes ágeis com fluxos
+                automatizados.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-4 border-t border-[#DEDBC8]/10 pt-4"
+            >
+              <div class="flex gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-black border border-white/20"
+                ></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Angular 20+</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >NestJs</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >TypeScript</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >PostgreSQL</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="tech-panel p-6 flex flex-col justify-between h-full group hover:border-[#DEDBC8]/50 transition-colors duration-300"
+          >
+            <div class="mb-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3
+                  class="font-code-sm text-xl text-primary font-bold flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-sm text-[#DEDBC8]"
+                    >folder_open</span
+                  >
+                  Triluga
+                </h3>
+                <span
+                  class="font-label-caps text-[9px] border border-[#DEDBC8]/30 px-2 py-0.5 text-[#DEDBC8]"
+                  >V 2.4.13</span
+                >
+              </div>
+              <p
+                class="font-label-caps text-[10px] text-[#DEDBC8]/70 mb-4 uppercase"
+              >
+                Classificado de Veículos P2P
+              </p>
+              <p class="font-body-md text-sm text-on-surface-variant">
+                Marketplace para aluguel de veículos P2P. Conectando
+                proprietários a motoristas com segurança e sem burocracia.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-4 border-t border-[#DEDBC8]/10 pt-4"
+            >
+              <div class="flex gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-black border border-white/20"
+                ></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Angular 16+</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >NestJS</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-orange-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Websocket</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-red-600"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Redis</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="tech-panel p-6 flex flex-col justify-between h-full group hover:border-[#DEDBC8]/50 transition-colors duration-300"
+          >
+            <div class="mb-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3
+                  class="font-code-sm text-xl text-primary font-bold flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-sm text-[#DEDBC8]"
+                    >folder_open</span
+                  >
+                  PraiseApp
+                </h3>
+                <span
+                  class="font-label-caps text-[9px] border border-[#DEDBC8]/30 px-2 py-0.5 text-[#DEDBC8]"
+                  >V 3.4.1</span
+                >
+              </div>
+              <p
+                class="font-label-caps text-[10px] text-[#DEDBC8]/70 mb-4 uppercase"
+              >
+                Ministry Management System
+              </p>
+              <p class="font-body-md text-sm text-on-surface-variant">
+                Solução SaaS para gestão de igrejas e ministérios, com módulos
+                de membros, agendas e kids.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-4 border-t border-[#DEDBC8]/10 pt-4"
+            >
+              <div class="flex gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-black border border-white/20"
+                ></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Angular 20+</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >NestJs</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >TypeScript</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-red-600"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Redis</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-pink-600"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >SELAH.IA</span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="tech-panel p-6 flex flex-col justify-between h-full group hover:border-[#DEDBC8]/50 transition-colors duration-300"
+          >
+            <div class="mb-6">
+              <div class="flex justify-between items-start mb-4">
+                <h3
+                  class="font-code-sm text-xl text-primary font-bold flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-sm text-[#DEDBC8]"
+                    >folder_open</span
+                  >
+                  Lumen
+                </h3>
+                <span
+                  class="font-label-caps text-[9px] border border-[#DEDBC8]/30 px-2 py-0.5 text-[#DEDBC8]"
+                  >V 1.4.0</span
+                >
+              </div>
+              <p
+                class="font-label-caps text-[10px] text-[#DEDBC8]/70 mb-4 uppercase"
+              >
+                Gerenciamento Pessoal de Tarefas &amp; Financeiro
+              </p>
+              <p class="font-body-md text-sm text-on-surface-variant">
+                O LUMEN é um SaaS de organização de vida para conectar tarefas,
+                dinheiro, metas, tempo e decisões em uma única experiência. A
+                versão 1.4.0 evolui a importação financeira com mais
+                rastreabilidade, feedback visual e resumo de impacto no
+                dashboard.
+              </p>
+            </div>
+            <div
+              class="flex items-center gap-4 border-t border-[#DEDBC8]/10 pt-4"
+            >
+              <div class="flex gap-2">
+                <span
+                  class="w-2 h-2 rounded-full bg-black border border-white/20"
+                ></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >Angular 16+</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >NestJs</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >TypeScript</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-pink-600"></span>
+                <span class="font-code-sm text-[10px] text-on-surface-variant"
+                  >SELAH.IA</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 5. ESPECIALIDADES & COMO CONSTRUO -->
+    <section
+      class="py-24 px-margin-mobile md:px-margin-desktop bg-[#050505] relative border-t border-[#DEDBC8]/20"
+      id="stack"
+    >
+      <div class="max-w-container-max mx-auto fade-up">
+        <div class="mb-20">
+          <div
+            class="flex items-center gap-4 mb-8 border-b border-[#DEDBC8]/20 pb-4"
+          >
+            <span class="material-symbols-outlined text-[#DEDBC8]">memory</span>
+            <h2
+              class="font-headline-accent text-headline-accent text-[#DEDBC8]"
+            >
+              /CORE_MODULES
+            </h2>
+          </div>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 gap-1px bg-[#DEDBC8]/10 border border-[#DEDBC8]/20"
+          >
+            <div
+              class="p-6 bg-[#0a0a0a] hover:bg-[#111] transition-colors flex flex-col items-center justify-center text-center"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-[#DEDBC8] mb-3 font-light"
+                >smart_toy</span
+              >
+              <h3 class="font-code-sm text-sm text-primary">
+                Chatbots &amp; IA
+              </h3>
+            </div>
+            <div
+              class="p-6 bg-[#0a0a0a] hover:bg-[#111] transition-colors flex flex-col items-center justify-center text-center"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-[#DEDBC8] mb-3 font-light"
+                >cable</span
+              >
+              <h3 class="font-code-sm text-sm text-primary">
+                Enterprise Integrations
+              </h3>
+            </div>
+            <div
+              class="p-6 bg-[#0a0a0a] hover:bg-[#111] transition-colors flex flex-col items-center justify-center text-center"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-[#DEDBC8] mb-3 font-light"
+                >cloud_done</span
+              >
+              <h3 class="font-code-sm text-sm text-[#DEDBC8] font-bold">
+                SaaS Scalability
+              </h3>
+            </div>
+            <div
+              class="p-6 bg-[#0a0a0a] hover:bg-[#111] transition-colors flex flex-col items-center justify-center text-center"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-[#DEDBC8] mb-3 font-light"
+                >architecture</span
+              >
+              <h3 class="font-code-sm text-sm text-[#DEDBC8] font-bold">
+                Software Architecture
+              </h3>
+            </div>
+            <div
+              class="p-6 bg-[#0a0a0a] hover:bg-[#111] transition-colors flex flex-col items-center justify-center text-center"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-[#DEDBC8] mb-3 font-light"
+                >terminal</span
+              >
+              <h3 class="font-code-sm text-sm text-primary">
+                Cloud &amp; DevOps
+              </h3>
+            </div>
+            <div
+              class="p-6 bg-[#0a0a0a] hover:bg-[#111] transition-colors flex flex-col items-center justify-center text-center"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-[#DEDBC8] mb-3 font-light"
+                >dataset</span
+              >
+              <h3 class="font-code-sm text-sm text-primary">
+                Data Engineering
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="flex items-center gap-4 mb-8 border-b border-[#DEDBC8]/20 pb-4"
+          >
+            <span class="material-symbols-outlined text-[#DEDBC8]"
+              >settings_system_daydream</span
+            >
+            <h2
+              class="font-headline-accent text-headline-accent text-[#DEDBC8]"
+            >
+              /TECH_STACK
+            </h2>
+          </div>
+          <div
+            class="border border-[#DEDBC8]/20 divide-y divide-[#DEDBC8]/20 bg-[#0a0a0a]"
+          >
+            <div
+              class="p-4 md:p-6 flex flex-col md:flex-row gap-4 items-start md:items-center hover:bg-[#111] transition-colors"
+            >
+              <div
+                class="w-48 font-label-caps text-[10px] text-[#DEDBC8] tracking-widest flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >desktop_windows</span
+                >
+                FRONTEND_LAYER
+              </div>
+              <div class="flex-1 font-code-sm text-xs text-primary">
+                React, Next.js, Angular, Vue.js, Tailwind CSS, TypeScript
+              </div>
+            </div>
+            <div
+              class="p-4 md:p-6 flex flex-col md:flex-row gap-4 items-start md:items-center hover:bg-[#111] transition-colors"
+            >
+              <div
+                class="w-48 font-label-caps text-[10px] text-[#DEDBC8] tracking-widest flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-sm">dns</span>
+                BACKEND_LAYER
+              </div>
+              <div class="flex-1 font-code-sm text-xs text-primary">
+                Node.js, NestJS, Python, GraphQL, RESTful APIs
+              </div>
+            </div>
+            <div
+              class="p-4 md:p-6 flex flex-col md:flex-row gap-4 items-start md:items-center hover:bg-[#111] transition-colors"
+            >
+              <div
+                class="w-48 font-label-caps text-[10px] text-[#DEDBC8] tracking-widest flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-sm">database</span>
+                DATA_LAYER
+              </div>
+              <div class="flex-1 font-code-sm text-xs text-primary">
+                PostgreSQL, MongoDB, Redis, MySQL
+              </div>
+            </div>
+            <div
+              class="p-4 md:p-6 flex flex-col md:flex-row gap-4 items-start md:items-center hover:bg-[#111] transition-colors"
+            >
+              <div
+                class="w-48 font-label-caps text-[10px] text-[#DEDBC8] tracking-widest flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-sm">cloud</span>
+                INFRA_LAYER
+              </div>
+              <div class="flex-1 font-code-sm text-xs text-primary">
+                Docker, Kubernetes, AWS, Firebase, CI/CD pipelines
+              </div>
+            </div>
+            <div
+              class="p-4 md:p-6 flex flex-col md:flex-row gap-4 items-start md:items-center hover:bg-[#111] transition-colors"
+            >
+              <div
+                class="w-48 font-label-caps text-[10px] text-[#DEDBC8] tracking-widest flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-sm">rule</span>
+                ENG_PRACTICES
+              </div>
+              <div class="flex-1 font-code-sm text-xs text-[#DEDBC8] font-bold">
+                Arquitetura Hexagonal, SOLID, TDD, Clean Code, Microservices
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 6. TIMELINE -->
+    <section
+      class="py-24 px-margin-mobile md:px-margin-desktop bg-[#0a0a0a] relative overflow-hidden border-t border-[#DEDBC8]/20 dot-bg"
+      id="timeline"
+    >
+      <div class="max-w-container-max mx-auto fade-up">
+        <div class="flex items-center justify-center gap-4 mb-16">
+          <span class="material-symbols-outlined text-[#DEDBC8]">history</span>
+          <h2
+            class="font-headline-accent text-headline-accent text-[#DEDBC8] text-center"
+          >
+            /SYSTEM_LOG
+          </h2>
+        </div>
+        <div class="relative timeline-line py-8">
+          <div class="relative z-10 flex flex-col gap-12 md:gap-24">
+            <div
+              class="flex flex-col md:flex-row w-full justify-between items-center group"
+            >
+              <div
+                class="w-full md:w-5/12 text-left md:text-right mb-4 md:mb-0 order-2 md:order-1 pl-12 md:pl-0 pr-0 md:pr-8"
+              >
+                <h4 class="font-code-sm text-primary text-lg">
+                  Início na RMITech
+                </h4>
+                <p class="font-body-md text-sm text-on-surface-variant mt-2">
+                  Primeiros passos profissionais em sistemas de RH.
+                </p>
+              </div>
+              <div
+                class="absolute left-5 md:left-1/2 w-3 h-3 bg-[#0a0a0a] border-2 border-[#DEDBC8] transform -translate-x-1/2 mt-1 md:mt-0 order-1 md:order-2 group-hover:bg-[#DEDBC8] transition-colors"
+              ></div>
+              <div class="w-full md:w-5/12 text-left order-3 pl-12 md:pl-8">
+                <span class="font-code-sm text-xl text-[#DEDBC8]/50"
+                  >[2020]</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex flex-col md:flex-row w-full justify-between items-center group"
+            >
+              <div
+                class="w-full md:w-5/12 text-left md:text-right mb-4 md:mb-0 order-3 md:order-1 pl-12 md:pl-0 pr-0 md:pr-8"
+              >
+                <span class="font-code-sm text-xl text-[#DEDBC8]/50"
+                  >[2021]</span
+                >
+              </div>
+              <div
+                class="absolute left-5 md:left-1/2 w-3 h-3 bg-[#0a0a0a] border-2 border-[#DEDBC8] transform -translate-x-1/2 mt-1 md:mt-0 order-1 md:order-2 group-hover:bg-[#DEDBC8] transition-colors"
+              ></div>
+              <div
+                class="w-full md:w-5/12 text-left order-2 md:order-3 pl-12 md:pl-8 mb-4 md:mb-0"
+              >
+                <h4 class="font-code-sm text-primary text-lg">Ragnasoft</h4>
+                <p class="font-body-md text-sm text-on-surface-variant mt-2">
+                  Aprofundamento em SOLID, TDD e Arquitetura Hexagonal.
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col md:flex-row w-full justify-between items-center group"
+            >
+              <div
+                class="w-full md:w-5/12 text-left md:text-right mb-4 md:mb-0 order-2 md:order-1 pl-12 md:pl-0 pr-0 md:pr-8"
+              >
+                <h4 class="font-code-sm text-primary text-lg">
+                  Central IT &amp; SaaS
+                </h4>
+                <p class="font-body-md text-sm text-on-surface-variant mt-2">
+                  Liderança técnica em Chatbots corporativos e escalada de
+                  produtos SaaS próprios.
+                </p>
+              </div>
+              <div
+                class="absolute left-5 md:left-1/2 w-3 h-3 bg-[#0a0a0a] border-2 border-[#DEDBC8] transform -translate-x-1/2 mt-1 md:mt-0 order-1 md:order-2 group-hover:bg-[#DEDBC8] transition-colors"
+              ></div>
+              <div class="w-full md:w-5/12 text-left order-3 pl-12 md:pl-8">
+                <span class="font-code-sm text-xl text-[#DEDBC8]/50"
+                  >[2022 - 2026]</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex flex-col md:flex-row w-full justify-between items-center group"
+            >
+              <div
+                class="w-full md:w-5/12 text-left md:text-right mb-4 md:mb-0 order-3 md:order-1 pl-12 md:pl-0 pr-0 md:pr-8"
+              >
+                <span class="font-code-sm text-xl text-[#DEDBC8] animate-pulse"
+                  >[O_FUTURO]</span
+                >
+              </div>
+              <div
+                class="absolute left-5 md:left-1/2 w-3 h-3 bg-[#DEDBC8] border-2 border-[#DEDBC8] transform -translate-x-1/2 mt-1 md:mt-0 order-1 md:order-2 shadow-[0_0_10px_#DEDBC8]"
+              ></div>
+              <div
+                class="w-full md:w-5/12 text-left order-2 md:order-3 pl-12 md:pl-8 mb-4 md:mb-0"
+              >
+                <h4 class="font-code-sm text-primary text-lg">
+                  Novas Fronteiras
+                </h4>
+                <p class="font-body-md text-sm text-on-surface-variant mt-2">
+                  Expandindo o ecossistema de produtos e arquiteturas de alta
+                  disponibilidade.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 7. CONTATO -->
+    <section
+      class="py-32 px-margin-mobile md:px-margin-desktop bg-[#050505] relative border-t border-[#DEDBC8]/20"
+      id="contact"
+    >
+      <div
+        class="max-w-container-max mx-auto text-center fade-up relative z-10"
+      >
+        <div
+          class="inline-block border border-[#DEDBC8]/30 px-6 py-2 mb-8 bg-[#111]"
+        >
+          <span class="font-code-sm text-xs text-[#DEDBC8]"
+            >CONNECTION_ESTABLISHED</span
+          >
+        </div>
+        <h2
+          class="font-headline-accent text-4xl md:text-6xl text-primary mb-8 tracking-tighter"
+        >
+          Vamos construir algo <span class="text-[#DEDBC8]">escalável</span>.
+        </h2>
+        <p
+          class="font-body-md text-sm text-on-surface-variant max-w-2xl mx-auto mb-12"
+        >
+          Seja para discutir uma arquitetura complexa, uma nova ideia de produto
+          ou apenas para dizer olá, os canais de comunicação estão abertos.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            class="bg-[#DEDBC8] text-[#050505] px-6 py-3 rounded-sm font-label-caps text-label-caps font-bold hover:bg-white transition-colors flex items-center gap-2"
+            href="mailto:johnmarcus3210@gmail.com"
+          >
+            <span class="material-symbols-outlined text-sm">mail</span>
+            EMAIL
+          </a>
+          <a
+            class="bg-[#111] border border-[#DEDBC8]/30 text-primary px-6 py-3 rounded-sm font-label-caps text-label-caps hover:border-[#DEDBC8] transition-colors flex items-center gap-2"
+            href="https://www.linkedin.com/in/joaomarcoscabral/"
+          >
+            <span class="material-symbols-outlined text-sm">link</span>
+            LINKEDIN
+          </a>
+          <a
+            class="bg-[#111] border border-[#DEDBC8]/30 text-primary px-6 py-3 rounded-sm font-label-caps text-label-caps hover:border-[#DEDBC8] transition-colors flex items-center gap-2"
+            href="https://github.com/Jcamihao"
+          >
+            <span class="material-symbols-outlined text-sm">code</span>
+            GITHUB
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- JSON Component: Footer -->
+    <footer
+      class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-[#050505] border-t border-[#DEDBC8]/20 relative z-10"
+    >
+      <div class="font-code-sm text-xs text-[#DEDBC8] flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">terminal</span>
+        JMC_SYS // v2.0
+      </div>
+      <div class="flex gap-6">
+        <a
+          class="font-code-sm text-[10px] text-on-surface-variant hover:text-[#DEDBC8] transition-colors uppercase"
+          href="https://www.linkedin.com/in/joaomarcoscabral/"
+          >LinkedIn</a
+        >
+        <a
+          class="font-code-sm text-[10px] text-on-surface-variant hover:text-[#DEDBC8] transition-colors uppercase"
+          href="https://github.com/Jcamihao"
+          >GitHub</a
+        >
+        <a
+          class="font-code-sm text-[10px] text-on-surface-variant hover:text-[#DEDBC8] transition-colors uppercase"
+          href="https://www.instagram.com/j_caminhao"
+          >Instagram</a
+        >
+        <a
+          class="font-code-sm text-[10px] text-on-surface-variant hover:text-[#DEDBC8] transition-colors uppercase"
+          href="mailto:johnmarcus3210@gmail.com"
+          >Email</a
+        >
+      </div>
+      <div class="font-code-sm text-[10px] text-on-surface-variant">
+        © 2026. ALL SYSTEMS NOMINAL.
+      </div>
+    </footer>
+    <script>
+      // Simple Role Rotator for Hero
+      const roleContainer = document.getElementById('rotating-roles');
+      let currentRoleIndex = 0;
+      const totalRoles = 4;
+      const roleHeight = 40; // h-10 in px
+
+      setInterval(() => {
+        currentRoleIndex = (currentRoleIndex + 1) % totalRoles;
+        roleContainer.style.transform = `translateY(-${currentRoleIndex * roleHeight}px)`;
+      }, 2500);
+
+      // Scroll Fade Up Logic
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-up').forEach((element) => {
+        observer.observe(element);
+      });
+    </script>
+  </body>
+</html>
